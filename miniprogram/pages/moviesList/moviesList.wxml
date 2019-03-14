@@ -1,2 +1,4 @@
 <!--pages/moviesList/moviesList.wxml-->
+<view class='container'>
 <text>pages/moviesList/moviesList.wxml</text>
+</view>

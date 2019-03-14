@@ -1,0 +1,26 @@
+.movie-image{
+  margin: 50rpx;
+  height: 700rpx;
+  width: 472rpx;
+}
+.movie-title{
+  font-size: 50rpx;
+  line-height: 70rpx;
+  margin: 15rpx;
+}
+.button{
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  height: 150rpx;
+  width: 100%;
+  border-top: 1rpx solid rgba(128, 128, 128, 0.596);
+}
+.button-hot,.button-customer{
+ flex: 1;
+ border-left: 1rpx solid  rgba(128, 128, 128, 0.596);
+  text-align: center;
+  line-height: 150rpx;
+  opacity: 0.5;
+  background-color: white;
+}

@@ -1,5 +1,5 @@
 <view class='container'>
-  <image src = "{{image}}" class='movie-image'></image>
+  <image src = "{{image}}" class='movie-image' bindtap='movieDetail' data-movie = "{{title}}"></image>
   <view class='movie-title'>{{title}}</view>
   <view class='movie-comment'>{{comment}}</view>
 
@@ -10,6 +10,10 @@
 
 
 
+  <view class='button'>
+    <navigator class='button-hot'  url='/pages/moviesList/moviesList'>热门</navigator>
+    <view class='button-customer'>我的</view>
+  </view>
 
 
 </view>

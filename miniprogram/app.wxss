@@ -1,7 +1,12 @@
 /**app.wxss**/
+page{
+  background-color: rgba(179, 177, 177, 0.199);
+  height: 100%;
+}
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+
 } 
