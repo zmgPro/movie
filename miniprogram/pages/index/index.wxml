@@ -1,0 +1,15 @@
+<view class='container'>
+  <image src = "{{image}}" class='movie-image'></image>
+  <view class='movie-title'>{{title}}</view>
+  <view class='movie-comment'>{{comment}}</view>
+
+
+
+
+
+
+
+
+
+
+</view>

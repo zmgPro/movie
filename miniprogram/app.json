@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/moviesList/moviesList",
+    "pages/moviesDetail/moviesDetail",
+    "pages/commentsList/commentsList",
+    "pages/commentsDetail/commentsDetail",
+    "pages/commentEdit/commnetEdit",
+    "pages/commentPreview/commentPreview",
+    "pages/customer/customer"
+ 
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "侃侃看电影",
+    "navigationBarTextStyle": "black"
+  }
+}
