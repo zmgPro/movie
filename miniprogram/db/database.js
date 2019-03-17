@@ -2,10 +2,10 @@ wx.cloud.init({
   env: 'test-ae7227'
 })
 const db = wx.cloud.database()
-function getMovieList(){
+function getMovieList(condition){
     return db
       .collection('movie')
-      .where({})
+      .where(condition)
       .get()
       .then(res=>{
         console.log(res)

@@ -6,14 +6,16 @@ Page({
   data: {
     image:"",
     title:"",
-    comment:"xx给你推荐了一部电影"
+    comment:"xx给你推荐了一部电影",
+    des:""
   },
 
   onLoad: function() {
      
     },
   onShow:function(){
-    getDb.getMovieList().then(res => {
+    let condition={}
+    getDb.getMovieList(condition).then(res => {
       var index = Math.floor((Math.random() * res.data.length));
       let movieInfo = res.data[index]
       getDb.getMovieImage(movieInfo.src)
@@ -24,7 +26,8 @@ Page({
           })
         })
       this.setData({
-        title : res.data[index].title
+        title : res.data[index].title,
+        description: res.data[index].description
       })
     })
   },
@@ -33,7 +36,7 @@ Page({
     let title = e.currentTarget.dataset.movie
     console.log(title)
     wx.navigateTo({
-      url: '/pages/moviesDetail/moviesDetail?title='+title,
+      url: '/pages/moviesDetail/moviesDetail?title='+title+'&image='+this.data.image + "&description="+this.data.description,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
