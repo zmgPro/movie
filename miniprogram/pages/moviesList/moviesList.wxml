@@ -1,4 +1,13 @@
 <!--pages/moviesList/moviesList.wxml-->
 <view class='container'>
-<text>pages/moviesList/moviesList.wxml</text>
+  <view class='movie-list' wx:for="{{movieList}}" bindtap='toDetail' data-title='{{item.title}}' data-url='{{item.url}}' data-des='{{item.description}}'>
+    <image src='{{item.url}}' class="image"></image>
+    <view class="info">
+      <view class ="title">{{item.title}}</view>
+      <view class="category">{{item.category}}</view>
+    </view>
+    
+
+  
+  </view>
 </view>

@@ -1,1 +1,26 @@
 /* pages/moviesList/moviesList.wxss */
+.movie-list{
+  margin: 50rpx 50rpx 0rpx 50rpx;
+  height: 300rpx;
+  width: 650rpx;
+  display: flex;
+  background-color: white;
+  border: 1rpx solid rgba(165, 164, 164, 0.288);
+  
+}
+.image{
+  height: 300rpx;
+  width:202rpx;
+}
+.info{
+  margin:0 50rpx;
+}
+.title{
+  font-size: 35rpx;
+  line-height: 200rpx;
+  font-weight: bolder;
+}
+.category{
+  font-size: 30rpx;
+  line-height: 50rpx;
+}

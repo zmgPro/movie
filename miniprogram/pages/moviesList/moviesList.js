@@ -1,4 +1,6 @@
 // pages/moviesList/moviesList.js
+const getDb = require('../../db/database.js')
+const app = getApp()
 Page({
 
   /**
@@ -25,10 +27,44 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow(){
+    let condition = {}
+    getDb.getMovieList(condition).then(res => {
+      let movieList = res.data
+      this.getImage(movieList)
+     
+     
+     
+     
+    })
   },
 
+  getImage(movieList){
+    let promise = movieList.map(item=>{
+        return getDb.getMovieImage(item.src)
+        .then(res=>{
+          item.url =res
+          return item
+        })
+      })
+    
+    Promise.all(promise).then(all=>{
+     console.log(all)
+     this.setData({
+       movieList:all
+     })
+   })
+  },
+  toDetail(e){
+    console.log(e)
+    let temp = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '/pages/moviesDetail/moviesDetail?title=' + temp.title + '&image=' + temp.url + "&description=" + temp.des,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
