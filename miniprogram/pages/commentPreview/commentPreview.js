@@ -1,17 +1,34 @@
 // pages/commentPreview/commentPreview.js
+const recorderManager = wx.getRecorderManager()
+const innerAudioContext = wx.createInnerAudioContext()
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    image: "/images/p449619623.jpg",
+    title: "热血警探",
+    content:"",
+    durationInfo:"",
+    playStatus:"PLAY"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let temp = options.content.replace("%3D","=")
+    // let regex = new RegExp(/[^=]+(?=.)/,"g");
+    let duration = + temp.match(/=(.*).acc/)[1]/1000
+    let durationInfo = duration + "s"
+    this.setData({
+      content:temp,
+      duration,
+      durationInfo
+    })
 
   },
 
@@ -62,5 +79,25 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  play: function () {
+    console.log(this.data.content)
+    innerAudioContext.src = this.data.content,
+    innerAudioContext.play()
+    this.setData({
+      playStatus: "STOP"
+    })
+    innerAudioContext.onPlay(() => {
+      console.log('开始播放')
+    })
+    setTimeout(() =>{
+      console.log('停止播放')
+      this.setData({
+        playStatus: "PLAY"
+      })},this.data.duration*1000)
+    innerAudioContext.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
+  },
 })

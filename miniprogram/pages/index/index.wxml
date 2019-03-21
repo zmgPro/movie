@@ -1,19 +1,17 @@
-<view class='container'>
+<view class='container' wx:if="{{auth == true}}">
+
   <image src = "{{image}}" class='movie-image' bindtap='movieDetail' data-movie = "{{title}}"></image>
   <view class='movie-title'>{{title}}</view>
   <view class='movie-comment'>{{comment}}</view>
-
-
-
-
-
-
-
-
   <view class='button'>
     <navigator class='button-hot'  url='/pages/moviesList/moviesList'>热门</navigator>
     <view class='button-customer'>我的</view>
   </view>
-
-
 </view>
+<view wx:else>
+  <view class='auth-info'>未获取用户信息，请登录</view>
+  <button class = 'auth-button' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+  授权登录
+  </button>
+</view>
+

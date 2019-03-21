@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -47,6 +47,21 @@
 					"id": -1,
 					"name": "movieList",
 					"pathName": "pages/moviesList/moviesList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "commentEdit",
+					"pathName": "pages/commentEdit/commentEdit",
+					"query": "",
 					"scene": null
 				}
 			]

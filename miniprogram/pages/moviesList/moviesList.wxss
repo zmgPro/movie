@@ -8,14 +8,14 @@
   border: 1rpx solid rgba(165, 164, 164, 0.288);
   
 }
-.image{
+.movie-image{
   height: 300rpx;
   width:202rpx;
 }
 .info{
   margin:0 50rpx;
 }
-.title{
+.movie-title{
   font-size: 35rpx;
   line-height: 200rpx;
   font-weight: bolder;

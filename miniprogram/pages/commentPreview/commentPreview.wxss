@@ -1,1 +1,6 @@
 /* pages/commentPreview/commentPreview.wxss */
+.voice-play{
+  width: 250rpx;
+  font-size: 30rpx;
+  margin-top: 150rpx;
+}

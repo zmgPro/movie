@@ -1,0 +1,36 @@
+/* pages/commentEdit/commnetEdit.wxss */
+.movie-card{
+  height: 900rpx;
+}
+.input{
+  height: 300rpx;
+  width: 450rpx;
+  border: 1rpx solid rgba(128, 128, 128, 0.178);
+  margin: 50rpx 100rpx;
+  border-radius:30rpx;
+
+}
+.finish{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(17, 184, 45);
+  color: white;
+  border-radius: 0rpx;
+}
+.voice{
+  width: 300rpx;
+  height: 100rpx;
+  font-size: 40rpx;
+  line-height: 100rpx;
+  margin-top: 100rpx;
+  color:rgba(128, 128, 128, 0.582);
+}
+.voice-play{
+  width: 300rpx;
+  height: 100rpx;
+  font-size: 40rpx;
+  line-height: 100rpx;
+  margin-top: 50rpx;
+  color:rgba(128, 128, 128, 0.582);
+}

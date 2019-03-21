@@ -1,2 +1,13 @@
-<!--pages/commentsDetail/commentsDetail.wxml-->
-<text>pages/commentsDetail/commentsDetail.wxml</text>
+<!--pages/moviesDetail/moviesDetail.wxml-->
+<view class='container'>
+  <view class='movie-card'>
+    <image src = "{{image}}" class='image'></image>
+    <view class='title'>{{title}}</view>
+  
+  
+  </view>
+
+
+
+
+</view>

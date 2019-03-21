@@ -5,9 +5,10 @@
     "pages/moviesDetail/moviesDetail",
     "pages/commentsList/commentsList",
     "pages/commentsDetail/commentsDetail",
-    "pages/commentEdit/commnetEdit",
+    "pages/commentEdit/commentEdit",
     "pages/commentPreview/commentPreview",
-    "pages/customer/customer"
+    "pages/customer/customer",
+    "pages/test/test"
  
   ],
   "window": {

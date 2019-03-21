@@ -1,9 +1,9 @@
 <!--pages/moviesList/moviesList.wxml-->
 <view class='container'>
   <view class='movie-list' wx:for="{{movieList}}" bindtap='toDetail' data-title='{{item.title}}' data-url='{{item.url}}' data-des='{{item.description}}'>
-    <image src='{{item.url}}' class="image"></image>
+    <image src='{{item.url}}' class="movie-image"></image>
     <view class="info">
-      <view class ="title">{{item.title}}</view>
+      <view class ="movie-title">{{item.title}}</view>
       <view class="category">{{item.category}}</view>
     </view>
     

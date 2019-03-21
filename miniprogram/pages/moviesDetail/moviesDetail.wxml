@@ -6,7 +6,7 @@
     <view class='description'>{{des}}</view>
     <view class='button'>
       <button class='button-check'>查看影评</button>
-      <button class='button-add'>添加影评</button>
+      <button class='button-add' bindtap='addComment'>添加影评</button>
     </view>
   
   </view>

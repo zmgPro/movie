@@ -1,2 +1,14 @@
-<!--pages/commentPreview/commentPreview.wxml-->
-<text>pages/commentPreview/commentPreview.wxml</text>
+
+<view class='container'>
+  <view class='movie-card'>
+    <image src = "{{image}}" class='image'></image>
+    <view class='title'>{{title}}</view>
+    <button class='voice-play' bindtap="play" wx:if="{{type ==voice}}">{{playStatus}} {{durationInfo}}</button>
+    <view wx:elif="{{type == text}}">{{content}}/</view>
+  
+  </view>
+
+<button class='finish' bindtap='finish'>完成</button>
+
+
+</view>

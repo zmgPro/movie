@@ -7,11 +7,21 @@ Page({
     image:"",
     title:"",
     comment:"xx给你推荐了一部电影",
-    des:""
+    des:"",
+    auth:false
   },
 
   onLoad: function() {
-     
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userInfo']) {
+          this.setData({
+            auth:true
+          })
+        }
+      }
+    })
+  
     },
   onShow:function(){
     let condition={}
@@ -41,7 +51,32 @@ Page({
       fail: function(res) {},
       complete: function(res) {},
     })
+  },
+  bindGetUserInfo(e){
+    console.log(e)
+    if (e.detail.rawData != undefined){
+      this.setData({
+        auth:true
+      })
+      app.globalData.userInfo = e.detail.rawData
+      wx.showToast({
+        title: '登陆成功',
+        icon: 'none',
+        image: '',
+        duration: 1000,
+      })
+    }
+    else{
+      wx.showToast({
+        title: '登陆失败，请确认授权',
+        icon: 'none',
+        image: '',
+        duration: 2000,
+      })
+    }
+    
   }
+  
 
 
 

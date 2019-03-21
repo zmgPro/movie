@@ -17,10 +17,21 @@
   border-top: 1rpx solid rgba(128, 128, 128, 0.596);
 }
 .button-hot,.button-customer{
- flex: 1;
+width: 375rpx;
  border-left: 1rpx solid  rgba(128, 128, 128, 0.596);
   text-align: center;
   line-height: 150rpx;
   opacity: 0.5;
   background-color: white;
+  border-radius: 0rpx;
+}
+.auth-info{
+  line-height: 500rpx;
+  text-align: center;
+  width: 100%;
+  font-size: 40rpx;
+}
+.auth-button{
+
+  width: 400rpx;
 }

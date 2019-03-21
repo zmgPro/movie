@@ -10,3 +10,30 @@ page{
   box-sizing: border-box;
 
 } 
+/* pages/moviesDetail/moviesDetail.wxss */
+.movie-card{
+  margin: 120rpx 50rpx;
+  width: 650rpx;
+  height: 1000rpx;
+  background: white;
+  border-radius: 10rpx;
+  border: 1rpx solid rgba(128, 128, 128, 0.644);
+  text-align: center;
+}
+.image{
+  height: 350rpx;
+  width: 237rpx;
+  position: absolute;
+  left: 256.5rpx;
+  top:50rpx;
+}
+.title{
+  margin-top:300rpx;
+  font-size: 45rpx;
+  line-height: 63rpx;
+  font-weight: bolder;
+
+}
+
+
+

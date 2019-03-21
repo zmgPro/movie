@@ -24,5 +24,22 @@ function getMovieImage(imageName){
     return error
   })
 }
+function getCustomer(){
+  return wx.cloud.callFunction({
+    name:"login"
+  }).then(res=>{
+    console.log(res)
+    let openid={}
+    openid.openid = res.result.openid
+    console.log(openid)
+    return db.collection('customer').where(openid)
+      .get()
+      .then(res => {
+        console.log(res)
+        return res
+      })
+  })
+}
+exports.getCustomer = getCustomer;
 exports.getMovieList = getMovieList;
 exports.getMovieImage = getMovieImage;
