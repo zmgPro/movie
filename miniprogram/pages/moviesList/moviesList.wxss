@@ -13,7 +13,7 @@
   width:202rpx;
 }
 .info{
-  margin:0 50rpx;
+  margin:0 30rpx;
 }
 .movie-title{
   font-size: 35rpx;

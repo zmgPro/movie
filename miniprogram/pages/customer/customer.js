@@ -1,11 +1,14 @@
 // pages/customer/customer.js
+const app = getApp()
+const getDb = require('../../db/database.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    myComment:{},
+    favComment:{}
   },
 
   /**
@@ -15,52 +18,69 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-
+    this.getMyComment()
+    this.getFavComment()
   },
+  getMyComment(){
+    let condition = new Object()
+    condition.openId = app.globalData.openId
+      getDb.getcommentsList(condition)
+      .then(res => {
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+        let movieList = res.data
+        this.getImage(movieList)
+          .then(res=>{
 
+             this.setData({
+                myComment:res
+              })
+          })
+       
+    
+      })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  getFavComment(){
+    let condition = new Object()
+    condition.openIdFav = app.globalData.openId
+    getDb.getFavComments(condition)
+      .then(res => {
+        let movieList = res.data
+        this.getImage(movieList)
+          .then(res => {
+            console.log(res)
+            this.setData({
+              favComment: res
+            })
+          })
+      
+      })
   },
+ 
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
 
+toCommentDetail(e){
+
+    // let id = e
+    wx.navigateTo({
+      url: '/pages/commentsDetail/commentsDetail?commentId='+e.currentTarget.dataset.commentid,
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  getImage(movieList) {
+    let promise = movieList.map(item => {
+      return getDb.getMovieImage(item.imageSrc)
+        .then(res => {
+          item.url = res
+          return item
+        })
+    })
+    return Promise.all(promise).then(all => {
+      // console.log(all)
+      return all
+      // this.setData({
+      //   myComment: all
+      // })
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

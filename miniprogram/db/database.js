@@ -8,7 +8,7 @@ function getMovieList(condition){
       .where(condition)
       .get()
       .then(res=>{
-        console.log(res)
+
         return res
       })
 }
@@ -28,18 +28,42 @@ function getCustomer(){
   return wx.cloud.callFunction({
     name:"login"
   }).then(res=>{
-    console.log(res)
+
     let openid={}
     openid.openid = res.result.openid
-    console.log(openid)
+
     return db.collection('customer').where(openid)
       .get()
       .then(res => {
-        console.log(res)
+
         return res
       })
   })
 }
+function getcommentsList(condition){
+
+  return db
+    .collection('comments')
+    .where(condition)
+    .get()
+    .then(res => {
+
+      return res
+    })
+}
+function getFavComments(condition){
+  return db
+    .collection('favorite')
+    .where(condition)
+    .get()
+    .then(res => {
+
+      return res
+    })
+}
+
+exports.getFavComments = getFavComments;
+exports.getcommentsList = getcommentsList;
 exports.getCustomer = getCustomer;
 exports.getMovieList = getMovieList;
 exports.getMovieImage = getMovieImage;

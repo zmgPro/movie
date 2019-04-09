@@ -1,1 +1,57 @@
-/* pages/commentsDetail/commentsDetail.wxss */
+
+
+.description{
+  margin: 50rpx 100rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  opacity: 0.5;
+  text-align: left;
+  height: 280rpx;
+  width: 400rpx;
+}
+.button{
+  margin-top:200rpx;
+  display: flex;
+  margin-bottom: 30rpx;
+
+}
+.button-fav,.button-add{
+    font-size: 30rpx;
+    line-height: 80rpx;
+  color: rgba(10, 56, 10, 0.521);
+  height: 80rpx;
+  width: 260rpx;
+  
+}
+.userInfo{
+  display: flex;
+  margin-left:100rpx;
+  padding-top: 50rpx;
+}
+.userImage{
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50rpx;
+}
+.userName{
+  line-height: 100rpx;
+  margin-left: 50rpx;
+  font-size: 40rpx;
+  
+  opacity: 0.7;
+}
+.comments-text,.comments-voice{
+  margin-left: 120rpx;
+  opacity: 0.5;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}
+.comments-voice{
+  background-color: rgba(187, 187, 187, 0.61);
+  border:1rpx solid rgba(128, 128, 128, 0.541);
+  width: 320rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 5rpx;
+}

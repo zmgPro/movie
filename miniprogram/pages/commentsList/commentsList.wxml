@@ -1,2 +1,16 @@
-<!--pages/commentsList/commentsList.wxml-->
-<text>pages/commentsList/commentsList.wxml</text>
+<view>
+  <view wx:if="{{comments.length==0}}">暂无评论</view>
+  <view wx:for="{{comments}}" class='comments' data-id='{{item._id}}' bindtap='toDetail'>
+    <view class='userInfo'>
+      <image src='{{item.userImage}}' class='userImage'></image>
+      <view class='userName'>{{item.userName}}</view>
+    </view>
+    <!-- <view>{{item.content}}</view> -->
+    <view  wx:if="{{item.type == 'text'}}" class='comments-text'>{{item.content}}</view>
+    <view wx:else class='comments-voice'>语音 {{item.duration}}</view>
+
+  </view>
+
+<navigator url='/pages/index/index' class='backIndex'>回到首页</navigator>
+
+</view>

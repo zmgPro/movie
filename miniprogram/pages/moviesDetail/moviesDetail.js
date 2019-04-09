@@ -6,16 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    image:"/images/p449619623.jpg",
-    title:"热血警探",
-    des:"尼古拉斯?安奇尔（西蒙?佩吉Simon Pegg 饰）在伦敦担任高级巡警，抓贼破案似乎是他最大的乐趣。为此他成为警局中最敬业最能干的警员。但这却招致了警长的妒嫉，可怜的尼古拉斯被调至一个偏僻平静的小镇当警察。"
+    image:"",
+    title:"",
+    des:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.description.length)
+    console.log(options)
     let description = ""
     if (options.description.length>120){
       description = options.description.slice(0,120) + "..."
@@ -23,6 +23,7 @@ Page({
     else{
       description = options.description
     }
+
     this.setData({
       image:options.image,
       title:options.title,
@@ -85,19 +86,24 @@ Page({
         console.log(res.tapIndex)
         if(res.tapIndex==0){
           wx.navigateTo({
-            url: '/pages/commentEdit/commentEdit?type=text&title='+this.data.title,
+            url: '/pages/commentEdit/commentEdit?type=text&title=' + this.data.title + '&image=' + this.data.image,
           })
         }
         else{
           wx.navigateTo({
             
-            url: '/pages/commentEdit/commentEdit?type=voice&title=' + this.data.title,
+            url: '/pages/commentEdit/commentEdit?type=voice&title=' + this.data.title + '&image=' + this.data.image,
           })
         }
       },
       fail(res) {
         console.log(res.errMsg)
       }
+    })
+  },
+  toCommmentDetail(){
+    wx.navigateTo({
+      url: '/pages/commentsList/commentsList?title='+this.data.title,
     })
   }
 })

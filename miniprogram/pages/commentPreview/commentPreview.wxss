@@ -1,6 +1,40 @@
 /* pages/commentPreview/commentPreview.wxss */
+.preview{
+  height: 280rpx;
+  width: 400rpx;
+  margin: 0rpx 100rpx;
+}
 .voice-play{
-  width: 250rpx;
+  width: 300rpx;
   font-size: 30rpx;
-  margin-top: 150rpx;
+  /* margin-top: 150rpx; */
+}
+.button{
+  /* margin-top:200rpx; */
+  display: flex;
+  margin-bottom: 30rpx;
+
+}
+.button-edit,.button-release{
+  font-size: 30rpx;
+  line-height: 80rpx;
+  color: rgba(10, 56, 10, 0.521);
+  height: 80rpx;
+  width: 260rpx;
+  
+}
+.userInfo{
+  display: flex;
+}
+.userImage{
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 60rpx;
+  margin: 30rpx 30rpx 30rpx 80rpx ;
+}
+.userName{
+  line-height: 120rpx;
+  opacity: 0.6;
+  height: 120rpx;
+  margin-top: 30rpx;
 }

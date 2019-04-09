@@ -6,7 +6,7 @@ Page({
   data: {
     image:"",
     title:"",
-    comment:"xx给你推荐了一部电影",
+    comment:"",
     des:"",
     auth:false
   },
@@ -30,11 +30,30 @@ Page({
       let movieInfo = res.data[index]
       getDb.getMovieImage(movieInfo.src)
         .then(res=>{
-          console.log(res)
           this.setData({
-            image:res
+            image:res,
+            imageSrc:movieInfo.src
           })
         })
+      let c = {}
+      c.title = res.data[index].title
+      getDb.getcommentsList(c)
+        .then(res=>{
+
+        if(res.data.length==0){
+          this.setData({
+            comment:"该电影暂无评论"
+          })
+        }
+        else{
+          let num = Math.floor((Math.random() * res.data.length));
+          let name = res.data[num].userName
+          this.setData({
+            comment: name+"给你推荐了一部电影",
+            commentId: res.data[num]._id
+          })
+        }
+      })
       this.setData({
         title : res.data[index].title,
         description: res.data[index].description
@@ -42,18 +61,15 @@ Page({
     })
   },
   movieDetail(e){
-    console.log(e)
+
     let title = e.currentTarget.dataset.movie
-    console.log(title)
+
     wx.navigateTo({
       url: '/pages/moviesDetail/moviesDetail?title='+title+'&image='+this.data.image + "&description="+this.data.description,
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
     })
   },
   bindGetUserInfo(e){
-    console.log(e)
+
     if (e.detail.rawData != undefined){
       this.setData({
         auth:true
@@ -75,6 +91,20 @@ Page({
       })
     }
     
+  },
+  toCommentDetail(e){
+
+    let id = e.currentTarget.dataset.commentid 
+    if(id != undefined ){
+      wx.navigateTo({
+        url: '/pages/commentsDetail/commentsDetail?commentId='+this.data.commentId,
+      })
+    }
+    else{
+      this.setData({
+        commentId:undefined
+      })
+    }
   }
   
 

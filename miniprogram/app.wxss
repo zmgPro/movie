@@ -12,6 +12,7 @@ page{
 } 
 /* pages/moviesDetail/moviesDetail.wxss */
 .movie-card{
+
   margin: 120rpx 50rpx;
   width: 650rpx;
   height: 1000rpx;
@@ -33,6 +34,26 @@ page{
   line-height: 63rpx;
   font-weight: bolder;
 
+}
+.button-1{
+    font-size: 30rpx;
+    line-height: 80rpx;
+  color: rgba(10, 56, 10, 0.521);
+  height: 80rpx;
+  width: 260rpx;
+  position: absolute;
+  left: 100rpx;
+  bottom: 100rpx;
+}
+.button-2{
+  font-size: 30rpx;
+    line-height: 80rpx;
+  color: rgba(10, 56, 10, 0.521);
+  height: 80rpx;
+  width: 260rpx;
+  position: absolute;
+  right: 100rpx;
+  bottom: 100rpx;
 }
 
 

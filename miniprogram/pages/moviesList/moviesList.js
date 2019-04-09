@@ -19,10 +19,6 @@ Page({
       icon: 'loading',
       image: '',
       duration: 3000,
-      mask: true,
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
     })
   },
 
@@ -41,10 +37,6 @@ Page({
     getDb.getMovieList(condition).then(res => {
       let movieList = res.data
       this.getImage(movieList)
-     
-     
-     
-     
     })
   },
 

@@ -1,2 +1,46 @@
-<!--pages/customer/customer.wxml-->
-<text>pages/customer/customer.wxml</text>
+<view>
+  <view class='myComment'>
+    <view class='comment-title'>我的影评</view>
+    <view class='comment-card' wx:for="{{myComment}}" bindtap='toCommentDetail' data-commentId='{{item._id}}'>
+      <image class='comment-image' src='{{item.url}}'></image>
+      <view class='comment-info'>
+        <view class='movie-title'>{{item.title}}</view>
+         <view class='movie-content-text' wx:if="{{item.type=='text'}}">{{item.content}}</view>
+        <view class='movie-content-voice' wx:else>语音{{item.duration}}</view>
+        <!-- <view class='user-info'>
+          <image  class='userImage' src='/images/p449619623.jpg'></image>
+          <view class='userName'>userName</view>
+        </view> -->
+      </view>
+    
+    </view>
+  
+  
+  </view>
+  <view class='favComment'>
+    <view class='comment-title'>收藏影评</view>
+          <view class='comment-card' wx:for="{{favComment}}" bindtap='toCommentDetail' data-commentId='{{item.commentId}}'>
+      <image class='comment-image' src='{{item.url}}'></image>
+      <view class='comment-info'>
+        <view class='movie-title'>{{item.title}}</view>
+         <view class='movie-content-text' wx:if="{{item.type=='text'}}">{{item.content}}</view>
+        <view class='movie-content-voice' wx:else>语音{{item.duration}}</view>
+        <view class='user-info'>
+          <image class='userImage' src='{{item.userImage}}'></image>
+          <view class='userName'>{{item.userName}}</view>
+        </view>
+      </view>
+    </view>
+  
+  
+  
+  </view>
+
+
+
+
+
+
+<navigator url='/pages/index/index' class='backIndex'>回到首页</navigator>
+
+</view>

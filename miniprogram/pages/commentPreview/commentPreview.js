@@ -2,7 +2,7 @@
 const recorderManager = wx.getRecorderManager()
 const innerAudioContext = wx.createInnerAudioContext()
 const app = getApp()
-
+const getDb = require('../../db/database.js')
 Page({
 
   /**
@@ -13,22 +13,49 @@ Page({
     title: "热血警探",
     content:"",
     durationInfo:"",
-    playStatus:"PLAY"
+    playStatus:"PLAY",
+    type:"voice"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let temp = options.content.replace("%3D","=")
-    // let regex = new RegExp(/[^=]+(?=.)/,"g");
-    let duration = + temp.match(/=(.*).acc/)[1]/1000
-    let durationInfo = duration + "s"
+    console.log(options)
+    console.log(app.globalData)
+    let durationInfo = options.duration + 's'
     this.setData({
-      content:temp,
-      duration,
-      durationInfo
+      type: options.type,
+      title: options.title,
+      image: options.image,
+      userImage: app.globalData.userInfo.avatarUrl,
+      userName: app.globalData.userInfo.nickName,
+      durationInfo,
+      duration:options.duration
     })
+    let temp = ""
+    if(options.type == "text"){
+      this.setData({
+        content: options.content,
+      })
+    }
+    else{
+      temp = options.content.replace("%3D", "=")
+      console.log(temp)
+      // console.log(temp.match(/=(.*).mp3/))
+
+  
+      // let duration = + temp.match(/=(.*).mp3/)[1] / 1000
+      // let durationInfo = duration + "s"
+      this.setData({
+        content: temp,
+        // duration,
+        // durationInfo
+      })
+    }
+
+ 
+    
 
   },
 
@@ -43,49 +70,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getImageSrc()
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  getImageSrc(){
+    let c = {}
+    c.title = this.data.title
+    getDb.getMovieList(c)
+      .then(res=>{
+        console.log(res.data[0].src)
+        this.setData({
+          imageSrc : res.data[0].src
+        })
+      })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
+ 
   play: function () {
     console.log(this.data.content)
     innerAudioContext.src = this.data.content,
     innerAudioContext.play()
     this.setData({
-      playStatus: "STOP"
+      playStatus: "PLAYING"
     })
     innerAudioContext.onPlay(() => {
       console.log('开始播放')
@@ -100,4 +104,76 @@ Page({
       console.log(res.errCode)
     })
   },
+  edit(){
+    wx.navigateBack({
+      
+    })
+  },
+  addComment(){
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      image: 'none',
+      duration: 2000,
+    })
+    if(this.data.type=="text"){
+      wx.cloud.callFunction({
+        name: "addComment",
+        data: {
+          title: this.data.title,
+          openId: app.globalData.openId,
+          type: this.data.type,
+          imageSrc:this.data.imageSrc,
+          content: this.data.content,
+          userImage: app.globalData.userInfo.avatarUrl,
+          userName: app.globalData.userInfo.nickName,
+          duration:'0'
+        }
+      }).then(res => {
+        wx.navigateTo({
+          url: '/pages/commentsList/commentsList?title=' + this.data.title
+        })
+        console.log(res)
+      
+        })
+    }
+    else{
+      let timestamp = new Date().getTime() 
+      let cloudPath = 'voice/' + app.globalData.userInfo.nickName + timestamp+'.mp3'
+      wx.cloud.uploadFile({
+        cloudPath: cloudPath,
+        filePath: this.data.content, // 文件路径
+      }).then(res => {
+        wx.cloud.callFunction({
+          name: "addComment",
+          data: {
+            title: this.data.title,
+            openId: app.globalData.openId,
+            imageSrc: this.data.imageSrc,
+            type: this.data.type,
+            content: res.fileID,
+            userImage: app.globalData.userInfo.avatarUrl,
+            userName: app.globalData.userInfo.nickName,
+            duration:this.data.durationInfo
+          }
+        }).then(res => {
+              wx.navigateTo({
+                url: '/pages/commentsList/commentsList?title=' + this.data.title})
+        })
+        
+
+      }).catch(error => {
+        // handle error
+        console.log(error)
+      })
+    }
+    wx.showToast({
+      title: '上传中',
+      icon:'loading',
+      duration:2000
+    })
+
+  }
+  
+
 })

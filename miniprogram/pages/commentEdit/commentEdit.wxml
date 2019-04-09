@@ -4,7 +4,7 @@
     <image src = "{{image}}" class='image'></image>
     <view class='title'>{{title}}</view>
     <view wx:if="{{type=='text'}}" >
-      <textarea placeholder='请输入文字评论'class="input" >
+      <textarea placeholder='请输入文字评论'class="input" bindinput='textInput'>
       
       </textarea>
     </view>

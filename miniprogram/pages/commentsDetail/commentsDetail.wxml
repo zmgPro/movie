@@ -1,9 +1,20 @@
 <!--pages/moviesDetail/moviesDetail.wxml-->
 <view class='container'>
-  <view class='movie-card'>
+  <view class='movie-card' wx:for="{{comment}}">
     <image src = "{{image}}" class='image'></image>
-    <view class='title'>{{title}}</view>
-  
+    <view class='title'>{{item.title}}</view>
+    <view class='userInfo'>
+      <image src='{{item.userImage}}' class='userImage'></image>
+      <view class='userName'>{{item.userName}}</view>
+    </view>
+    <!-- <view>{{item.content}}</view> -->
+    <view  wx:if="{{item.type == 'text'}}" class='comments-text'>{{item.content}}</view>
+    <view wx:else class='comments-voice' bindtap="play">{{playStatus}} {{item.duration}}</view>
+
+    <view class='button'>
+      <button class='button-1' bindtap='addFav'>收藏影评</button>
+      <button class='button-2' bindtap='addComment'>添加影评</button>
+    </view>
   
   </view>
 

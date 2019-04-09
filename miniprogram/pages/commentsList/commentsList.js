@@ -1,18 +1,22 @@
 // pages/commentsList/commentsList.js
+const getDb = require('../../db/database.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    title:'千与千寻',
+    comments:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      title:options.title
+    })
   },
 
   /**
@@ -26,7 +30,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let condition = new Object()
+    condition.title = this.data.title
+    getDb.getcommentsList(condition)
+      .then(res=>{
+        console.log(res)
+        this.setData({
+          comments:res.data
+        })
+      })
   },
 
   /**
@@ -62,5 +74,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  toDetail(e){
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/commentsDetail/commentsDetail?commentId='+e.currentTarget.dataset.id,
+    })
   }
 })

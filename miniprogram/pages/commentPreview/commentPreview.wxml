@@ -3,12 +3,25 @@
   <view class='movie-card'>
     <image src = "{{image}}" class='image'></image>
     <view class='title'>{{title}}</view>
-    <button class='voice-play' bindtap="play" wx:if="{{type ==voice}}">{{playStatus}} {{durationInfo}}</button>
-    <view wx:elif="{{type == text}}">{{content}}/</view>
-  
+    <view class='userInfo'>
+      <image src='{{userImage}}' class = "userImage"></image>
+      <view class='userName'>{{userName}}的影评：</view>
+    </view>
+    <view class='preview'>
+      <block wx:if="{{type == 'voice'}}">
+        <button class='voice-play' bindtap="play" >{{playStatus}} {{durationInfo}}</button>
+      </block>
+      <block wx:else>
+        <view >{{content}}</view>
+      </block>
+    
+    </view>
+  <view class='button'>
+      <button class='button-1' bindtap='edit'>重新编辑</button>
+      <button class='button-2' bindtap='addComment'>发布影评</button>
+    </view>
   </view>
-
-<button class='finish' bindtap='finish'>完成</button>
+    
 
 
 </view>
