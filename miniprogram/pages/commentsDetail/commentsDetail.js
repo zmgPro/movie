@@ -64,13 +64,13 @@ Page({
 
         if (res.tapIndex == 0) {
           wx.navigateTo({
-            url: '/pages/commentEdit/commentEdit?type=text&title=' + this.data.comment[0].title + '&image=' + this.data.comment[0].image,
+            url: '/pages/commentEdit/commentEdit?type=text&title=' + this.data.comment[0].title + '&image=' + this.data.image,
           })
         }
         else {
           wx.navigateTo({
 
-            url: '/pages/commentEdit/commentEdit?type=voice&title=' + this.data.comment[0].title + '&image=' + this.data.comment[0].image,
+            url: '/pages/commentEdit/commentEdit?type=voice&title=' + this.data.comment[0].title + '&image=' + this.data.image,
           })
         }
       },

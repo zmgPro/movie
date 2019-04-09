@@ -139,7 +139,7 @@ Page({
     }
     else{
       let timestamp = new Date().getTime() 
-      let cloudPath = 'voice/' + app.globalData.userInfo.nickName + timestamp+'.mp3'
+      let cloudPath = 'voice/' + app.globalData.userInfo.nickName + timestamp+'.acc'
       wx.cloud.uploadFile({
         cloudPath: cloudPath,
         filePath: this.data.content, // 文件路径

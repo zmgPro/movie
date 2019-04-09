@@ -47,7 +47,7 @@ Page({
       sampleRate: 16000,//采样率
       numberOfChannels: 1,//录音通道数
       encodeBitRate: 96000,//编码码率
-      format: 'mp3',//音频格式，有效值 aac/mp3
+      format: 'acc',//音频格式，有效值 aac/mp3
       frameSize: 50,//指定帧大小，单位 KB
     }
     //开始录音
@@ -70,11 +70,14 @@ Page({
         innerAudioContext.duration //类似初始化-必须触发-不触发此函数延时也获取不到
         setTimeout(()=>{
           //在这里就可以获取到大家梦寐以求的时长了
-          console.log(innerAudioContext.duration);//延时获取长度 单位：秒
+          // console.log(innerAudioContext.duration);//延时获取长度 单位：秒
           this.setData({
-            duration: innerAudioContext.duration
+            duration: innerAudioContext.duration,
+            tempFilePath:res.tempFilePath
           })
-        }, 1000)  //这里设置延时1秒获取
+        }, 1000) 
+
+         //这里设置延时1秒获取
       })
       
       this.tempFilePath = res.tempFilePath;
@@ -82,9 +85,6 @@ Page({
       const { tempFilePath } = res
       let temp = res.tempFilePath.replace("=","%3D")
       console.log(res.tempFilePath)
-
-      
-    
 
       this.setData({
         content: temp
@@ -94,8 +94,10 @@ Page({
   },
   //播放声音
   play: function () {
+    
     innerAudioContext.autoplay = true
-    innerAudioContext.src = this.tempFilePath,
+    innerAudioContext.src = this.data.tempFilePath,
+    // innerAudioContext.play()
       innerAudioContext.onPlay(() => {
         console.log('开始播放')
       })
