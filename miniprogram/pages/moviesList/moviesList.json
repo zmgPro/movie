@@ -1,4 +1,8 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "电影列表"
+  "navigationBarTitleText": "电影列表",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+  
+ 
 }

@@ -20,14 +20,9 @@ Page({
       image: '',
       duration: 3000,
     })
+    
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -37,8 +32,27 @@ Page({
     getDb.getMovieList(condition).then(res => {
       let movieList = res.data
       this.getImage(movieList)
+      wx.stopPullDownRefresh(
+    
+      )
     })
   },
+  onPullDownRefresh: function () {
+
+    // wx.startPullDownRefresh()
+    this.onShow()
+    wx.showToast({
+      title: '刷新成功',
+      icon: 'success',
+      image: '',
+      duration: 1000,
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+
 
   getImage(movieList){
     let promise = movieList.map(item=>{
@@ -65,39 +79,6 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
-  },
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
+
 })

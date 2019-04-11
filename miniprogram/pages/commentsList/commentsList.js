@@ -25,6 +25,21 @@ Page({
   onReady: function () {
 
   },
+  onPullDownRefresh: function () {
+
+    // wx.startPullDownRefresh()
+    this.onShow()
+    wx.showToast({
+      title: '刷新成功',
+      icon: 'success',
+      image: '',
+      duration: 1000,
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -38,6 +53,8 @@ Page({
         this.setData({
           comments:res.data
         })
+        console.log(1)
+        wx.stopPullDownRefresh(console.log(2))
       })
   },
 
@@ -58,9 +75,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+ 
 
   /**
    * 页面上拉触底事件的处理函数
